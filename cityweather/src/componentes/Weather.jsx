@@ -31,9 +31,7 @@ const Weather = () => {
     fetchWeather();
     fetchDiasProximos();
   }, [lat, lng]);
-  
-  console.log(weatherData)
-  console.log(lat, lng)
+
   return (
     <div>
       {weatherData && diasProximos ? (

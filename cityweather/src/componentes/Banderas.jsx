@@ -40,7 +40,6 @@ const Banderas = () => {
           paisDelSur.includes(country.name.common)
         );
         setPaisesSeleccionados(paisesSeleccionados);
-        console.log(paisesSeleccionados)
       } catch (error) {
         console.error('Error fetching countries data:', error);
       }
