@@ -40,6 +40,7 @@ const Banderas = () => {
           paisDelSur.includes(country.name.common)
         );
         setPaisesSeleccionados(paisesSeleccionados);
+        console.log(paisesSeleccionados)
       } catch (error) {
         console.error('Error fetching countries data:', error);
       }
@@ -47,7 +48,6 @@ const Banderas = () => {
 
     fetchPaisesSeleccionados();
   }, []);
-
   return (
     <div className='flag-box'>
       <h2>Elija un país</h2>

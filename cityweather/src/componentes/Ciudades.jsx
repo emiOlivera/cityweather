@@ -35,7 +35,7 @@ const Ciudades = () => {
           throw new Error(`Abreviatura no encontrada para el país: ${countryParam}`);
         }
         
-        const response = await axios.get(`http://api.geonames.org/searchJSON?country=${countryCode}&maxRows=500&username=emiliano`);
+        const response = await axios.get(`https://secure.geonames.org/searchJSON?country=${countryCode}&maxRows=500&username=emiliano`);
         
         const ciudadesData = response.data.geonames.map(city => ({
           name: city.name,
@@ -46,7 +46,7 @@ const Ciudades = () => {
         setCiudades(ciudadesData);
         setCiudadesFiltradas(ciudadesData);
       } catch (error) {
-        setError('Error fetching ciudades data:', error);
+        setError('Error al obtener los datos de las ciudades:', error);
       } finally {
         setLoading(false);
       }
@@ -118,3 +118,4 @@ const Ciudades = () => {
 };
 
 export default Ciudades;
+

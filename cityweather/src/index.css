@@ -1,1 +1,292 @@
+body{
+    background-color: rgb(255, 255, 255);
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(31, 28, 28);
+    overflow-y:unset;
+    overflow-x: hidden;
+    user-select: none;
+}
 
+
+
+.flag-box {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    margin: 100px auto;
+    border: 2px dotted rgb(0, 187, 255);
+    align-items: center;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 20px;
+  }
+  
+  .flag-container {
+    display: grid;
+    width: 90%;
+    height: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+}
+  
+  .flag {
+    text-align: center;
+  }
+  
+  .flag img {
+    width: 60%;
+    max-width: 100px;
+    border: 1px solid rgba(0, 0, 0, .5);
+    image-rendering: pixelated;
+    filter: brightness(98%) contrast(100%);
+    margin: 5px;
+  }
+
+  .location-btn{
+    display: flex;
+    width: 80%;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px auto;
+    background-color: #007bff; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .location-btn:hover{
+    background-color: #0056b3;
+  }
+
+  .city-container{
+    display: flex;
+    flex-direction: column;
+    width: 45vw;
+    margin: 100px auto;
+    border: 2px dotted rgb(0, 187, 255);
+    border-radius: 8px;
+    background-color: white;
+    font-size: 14px;
+    align-items: center;
+    text-align: center
+  }
+
+  .city-input input,
+  .city-select select {
+    display: flex;
+    width: 270px;
+    height: 40px;
+    margin: 10px auto;
+    align-items: center;
+    background-color: #96c3f3;
+    font-weight: bold;
+    color: black;
+    border: 1px solid #ccc; 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease; 
+  }
+  
+  .city-input input:focus,
+  .city-select select:focus {
+    outline: none;
+    border-color: #4e7cf9; 
+  }
+
+.city-button button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff; 
+  color: #fff; 
+  cursor: pointer;
+  margin: 10px auto;
+  border-radius: 5px;
+}
+
+.city-button button:hover {
+  background-color: #0056b3;
+}
+
+@media screen and (max-width: 701px) {
+    .city-container{
+        font-size: 10px;
+  }
+  h2{
+    padding: 10px;
+  }
+.city-select select {
+    width: 95%;
+    font-size: 12px;
+    margin: 5px auto;
+}
+.city-input input{
+    width: 95%;
+    font-size: 12px;
+    margin: 5px auto;
+}
+}
+
+.weather-container{
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    margin: 100px auto;
+    border: 2px dotted rgb(0, 187, 255);
+    border-radius: 8px;
+    background-color: white;
+    font-size: 14px;
+    align-items: center;
+    text-align: center
+}
+
+.weather-container h2{
+    font-size: 25px
+}
+
+.clima{
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.logo{
+  background-color: rgba(0, 0, 0, .25);
+}
+
+.p-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 15px;
+  width: 90%;
+}
+
+.p-container p{
+  border: 1.5px dotted black;
+}
+
+.viento{
+  display: flex;
+  font-size: 14px;
+  width: 90%;
+  justify-content: space-around;
+  margin: 10px auto;
+  align-items: center;
+}
+
+.viento img, .amanecer img{
+max-width: 40px;
+max-height: 40px;
+
+}
+
+.viento p{
+  border: 1.5px dotted black;
+  margin: 5px;
+  padding: 10px;
+}
+
+.amanecer{
+  display: flex;
+  font-size: 14px;
+  width: 90%;
+  justify-content: space-around;
+  margin: 10px auto;
+  align-items: center;
+
+
+}
+
+.amanecer p{
+  border: 1.5px dotted black;
+  margin: 5px;
+  padding: 10px;
+}
+
+.btn{
+  text-decoration: none;
+  display: flex;
+  color: #3082da;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.btn:hover{
+  color: #06305d;
+}
+
+
+@media screen and (max-width: 400px) {
+  .amanecer{
+  width: 80%;
+  font-size: 10px;
+  }
+  .viento{
+    width: 80%;
+    font-size: 10px;
+    }
+
+.p-container{
+  width: 80%;
+  font-size: 10px;
+}
+.viento img, .amanecer img{
+  max-width: 20px;
+  max-height: 20px;
+  
+  }
+
+.location-btn{
+  font-size: 14px;
+}
+}
+
+@media screen and (max-width: 302px) {
+  .viento, .amanecer{
+    flex-direction: column;
+  }
+  .proximos-item{
+    width: 50%;
+  }
+  
+}
+.proximos{
+  display: grid;
+  width: 90%;
+  height: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  justify-content: center;
+}
+.proximos-item{
+  border: 1.5px dotted black;
+  margin: 10px auto;
+  padding: 5px;
+}
+
+p{
+  user-select: none;
+}
+
+.notFound{
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    margin: 100px auto;
+    border: 2px dotted rgb(0, 187, 255);
+    align-items: center;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 20px;
+
+}
+
+.loading-spinner{
+  font-size: 20px;
+  align-items: center;
+  justify-content: space-between;
+  color: #06305d;
+}
