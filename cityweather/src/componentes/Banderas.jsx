@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import Venezuela from '../banderas/Venezuela.png';
+import Argentina from '../banderas/Argentina.png';
+import Colombia from '../banderas/Colombia.png';
+import Chile from '../banderas/Chile.png';
+import Paraguay from '../banderas/Paraguay.png';
+import Uruguay from '../banderas/Uruguay.png';
+import Brazil from '../banderas/Brazil.png';
+import Bolivia from '../banderas/Bolivia.png';
+import Ecuador from '../banderas/Ecuador.png';
+import Peru from '../banderas/Peru.png';
 
 const Banderas = () => {
   const [paisesSeleccionados, setPaisesSeleccionados] = useState([]);
@@ -20,41 +29,30 @@ const Banderas = () => {
   };
 
   const paisDelSur = [
-    'Argentina',
-    'Brazil',
-    'Peru',
-    'Ecuador',
-    'Venezuela',
-    'Chile',
-    'Uruguay',
-    'Paraguay',
-    'Colombia',
-    'Bolivia'
+    { name: 'Argentina', flag: Argentina },
+    { name: 'Brazil', flag: Brazil },
+    { name: 'Peru', flag: Peru },
+    { name: 'Ecuador', flag: Ecuador },
+    { name: 'Venezuela', flag: Venezuela },
+    { name: 'Chile', flag: Chile },
+    { name: 'Uruguay', flag: Uruguay },
+    { name: 'Paraguay', flag: Paraguay },
+    { name: 'Colombia', flag: Colombia },
+    { name: 'Bolivia', flag: Bolivia }
   ];
 
   useEffect(() => {
-    const fetchPaisesSeleccionados = async () => {
-      try {
-        const response = await axios.get('https://restcountries.com/v3.1/all');
-        const paisesSeleccionados = response.data.filter(country =>
-          paisDelSur.includes(country.name.common)
-        );
-        setPaisesSeleccionados(paisesSeleccionados);
-      } catch (error) {
-        console.error('Error fetching countries data:', error);
-      }
-    };
-
-    fetchPaisesSeleccionados();
+    setPaisesSeleccionados(paisDelSur);
   }, []);
+
   return (
     <div className='flag-box'>
       <h2>Elija un país</h2>
       <div className='flag-container'>
         {paisesSeleccionados.map(country => (
-          <div key={country.name.common} className='flag'>
-            <Link to={`/choose-city/${country.name.common}`}>
-              <img src={country.flags.svg} alt={country.name.common} />
+          <div key={country.name} className='flag'>
+            <Link to={`/choose-city/${country.name}`}>
+              <img src={country.flag} alt={country.name} />
             </Link>
           </div>
         ))}
@@ -65,3 +63,4 @@ const Banderas = () => {
 };
 
 export default Banderas;
+

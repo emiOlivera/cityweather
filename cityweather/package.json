@@ -1,7 +1,7 @@
 {
   "name": "cityweather",
   "version": "0.1.0",
-  "homepage": " https://emiolivera.github.io/cityweather/",
+  "homepage": "https://emiolivera.github.io/cityweather/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",

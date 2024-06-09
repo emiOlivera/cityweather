@@ -1,3 +1,4 @@
+// Ruta.js
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Banderas from "./componentes/Banderas";
@@ -7,7 +8,6 @@ import LocationWeather from './componentes/LocationWeather';
 
 const Ruta = () => {
   return (
-    <>
     <Router>
       <Routes>
         <Route exact path="/" element={<Banderas />} />
@@ -16,9 +16,9 @@ const Ruta = () => {
         <Route path="/location-weather/:location" element={<LocationWeather />} />
       </Routes>
     </Router>
-    </>
   );
 };
 
 export default Ruta;
+
 
