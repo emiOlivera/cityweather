@@ -73,9 +73,13 @@ const Ciudades = () => {
             lat: city.lat,
             lng: city.lng
           }));
-          
-          setCiudades(ciudadesData);
-          setCiudadesFiltradas(ciudadesData);
+
+          const uniqueCities = Array.from(new Set(ciudadesData.map(city => city.name))).map(name => {
+            return ciudadesData.find(city => city.name === name);
+          });
+
+          setCiudades(uniqueCities);
+          setCiudadesFiltradas(uniqueCities);
         } catch (error) {
           setError('Error al obtener los datos de las ciudades:', error);
         } finally {
@@ -170,6 +174,7 @@ const Ciudades = () => {
 }  
 
 export default Ciudades;
+
 
 
 
