@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/cityweather/static/css/main.962a4ac5.css",
+    "main.css": "/cityweather/static/css/main.874e606f.css",
     "main.js": "/cityweather/static/js/main.41bcc319.js",
     "static/media/Ecuador.png": "/cityweather/static/media/Ecuador.6acb6b592eeb17b1136d.png",
     "static/media/Paraguay.png": "/cityweather/static/media/Paraguay.fa8b9761ed2e40156d9f.png",
@@ -9,11 +9,11 @@
     "static/media/Venezuela.png": "/cityweather/static/media/Venezuela.e2b1eb0ea32516be875c.png",
     "static/media/Chile.png": "/cityweather/static/media/Chile.d5d7f5cf3760e94f8587.png",
     "index.html": "/cityweather/index.html",
-    "main.962a4ac5.css.map": "/cityweather/static/css/main.962a4ac5.css.map",
+    "main.874e606f.css.map": "/cityweather/static/css/main.874e606f.css.map",
     "main.41bcc319.js.map": "/cityweather/static/js/main.41bcc319.js.map"
   },
   "entrypoints": [
-    "static/css/main.962a4ac5.css",
+    "static/css/main.874e606f.css",
     "static/js/main.41bcc319.js"
   ]
 }
