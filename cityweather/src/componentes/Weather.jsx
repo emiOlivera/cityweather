@@ -10,6 +10,10 @@ const Weather = () => {
   const [diasProximos, setDiasProximos] = useState(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchWeather = async () => {
       try {
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&lang=es&units=metric&appid=c8daf74f0e1e53677d69c5935fdc981e`);
@@ -66,7 +70,6 @@ const Weather = () => {
                 if (!acc[date]) {
                   acc[date] = forecast;
                 } else {
-                  // Si ya existe un registro para este día, actualiza los datos si es necesario
                   if (forecast.main.temp_min < acc[date].main.temp_min) {
                     acc[date].main.temp_min = forecast.main.temp_min;
                   }

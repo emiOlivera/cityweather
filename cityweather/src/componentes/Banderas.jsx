@@ -42,10 +42,15 @@ const Banderas = () => {
   ];
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     setPaisesSeleccionados(paisDelSur);
   }, []);
 
   return (
+    <>
     <div className='flag-box'>
       <h2>Elija un país</h2>
       <div className='flag-container'>
@@ -59,6 +64,7 @@ const Banderas = () => {
       </div>
       <button onClick={usarUbicacion} className='location-btn'>Usar ubicación</button>
     </div>
+    </>
   );
 };
 

@@ -12,6 +12,10 @@ const LocationWeather = () => {
   const [latitude, longitude] = location.split(',');
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchWeather = async () => {
       try {
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&lang=es&units=metric&appid=c8daf74f0e1e53677d69c5935fdc981e`);
@@ -78,7 +82,7 @@ const LocationWeather = () => {
                 }
                 return acc;
               }, {})
-            ).slice(0, 6).map((day) => (
+            ).slice(1, 7).map((day) => (
               <div key={day.dt} className='proximos-item'>
                 <p>Fecha: {new Date(day.dt * 1000).toLocaleDateString()}</p>
                 <p>Temp Min: {day.main.temp_min} °C</p>

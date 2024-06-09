@@ -1,7 +1,7 @@
 body{
   background-color: rgb(255, 255, 255);
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color: rgb(31, 28, 28);
   overflow-y:unset;
@@ -17,7 +17,8 @@ color: #1659a1;
   display: flex;
   flex-direction: column;
   width: 50vw;
-  margin: 100px auto;
+  height: 90%;
+  margin: 50px auto;
   border: 2px dotted rgb(0, 187, 255);
   align-items: center;
   border-radius: 8px;
@@ -67,7 +68,8 @@ color: #1659a1;
   display: flex;
   flex-direction: column;
   width: 45vw;
-  margin: 100px auto;
+  height: 90%;
+  margin: 50px auto;
   border: 2px dotted rgb(0, 187, 255);
   border-radius: 8px;
   background-color: white;
@@ -121,12 +123,12 @@ h2{
 }
 .city-select select {
   width: 95%;
-  font-size: 12px;
+  font-size: 10px;
   margin: 5px auto;
 }
 .city-input input{
   width: 95%;
-  font-size: 12px;
+  font-size: 10px;
   margin: 5px auto;
 }
 }
@@ -135,13 +137,14 @@ h2{
   display: flex;
   flex-direction: column;
   width: 50vw;
-  margin: 100px auto;
+  height: 90%;
+  margin: 50px auto;
   border: 2px dotted rgb(0, 187, 255);
   border-radius: 8px;
   background-color: white;
   font-size: 14px;
   align-items: center;
-  text-align: center
+  text-align: center;
 }
 
 .weather-container h2{

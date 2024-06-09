@@ -18,8 +18,10 @@ const countryCodes = {
 
 const Ciudades = () => {
   const { country: countryParam } = useParams();
+  const [provincias, setProvincias] = useState([]);
   const [ciudades, setCiudades] = useState([]);
   const [ciudadesFiltradas, setCiudadesFiltradas] = useState([]);
+  const [provinciaSeleccionada, setProvinciaSeleccionada] = useState('');
   const [ciudadSeleccionada, setCiudadSeleccionada] = useState('');
   const [busqueda, setBusqueda] = useState('');
   const [error, setError] = useState(null);
@@ -27,33 +29,68 @@ const Ciudades = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCiudades = async () => {
-      setLoading(true);
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const fetchProvincias = async () => {
       try {
         const countryCode = countryCodes[countryParam];
         if (!countryCode) {
           throw new Error(`Abreviatura no encontrada para el país: ${countryParam}`);
         }
         
-        const response = await axios.get(`https://secure.geonames.org/searchJSON?country=${countryCode}&maxRows=500&username=emiliano`);
+        const response = await axios.get(`https://secure.geonames.org/searchJSON?country=${countryCode}&featureCode=ADM1&username=emiliano`);
         
-        const ciudadesData = response.data.geonames.map(city => ({
-          name: city.name,
-          lat: city.lat,
-          lng: city.lng
+        const provinciasData = response.data.geonames.map(provincia => ({
+          name: provincia.name,
+          code: provincia.adminCode1
         }));
         
-        setCiudades(ciudadesData);
-        setCiudadesFiltradas(ciudadesData);
+        setProvincias(provinciasData);
       } catch (error) {
-        setError('Error al obtener los datos de las ciudades:', error);
-      } finally {
-        setLoading(false);
+        setError('Error al obtener los datos de las provincias:', error);
       }
     };
 
-    fetchCiudades();
+    fetchProvincias();
   }, [countryParam]);
+
+  useEffect(() => {
+    if (provinciaSeleccionada) {
+      const fetchCiudades = async () => {
+        setLoading(true);
+        try {
+          const countryCode = countryCodes[countryParam];
+          if (!countryCode) {
+            throw new Error(`Abreviatura no encontrada para el país: ${countryParam}`);
+          }
+          
+          const response = await axios.get(`https://secure.geonames.org/searchJSON?country=${countryCode}&adminCode1=${provinciaSeleccionada}&maxRows=400&username=emiliano`);
+          
+          const ciudadesData = response.data.geonames.map(city => ({
+            name: city.name,
+            lat: city.lat,
+            lng: city.lng
+          }));
+          
+          setCiudades(ciudadesData);
+          setCiudadesFiltradas(ciudadesData);
+        } catch (error) {
+          setError('Error al obtener los datos de las ciudades:', error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchCiudades();
+    }
+  }, [countryParam, provinciaSeleccionada]);
+
+  const cambioProvincia = (e) => {
+    const provinciaSeleccionada = e.target.value;
+    setProvinciaSeleccionada(provinciaSeleccionada);
+  };
 
   const cambioCiudad = (e) => {
     const ciudadSeleccionada = e.target.value;
@@ -84,40 +121,56 @@ const Ciudades = () => {
   };
 
   return (
+    <>
     <div className='city-container'>
-      <h2>Selecciona una ciudad de {countryParam}</h2>
-      <div className='city-input'>
-        <input 
-          type="text" 
-          placeholder="Buscar ciudad" 
-          value={busqueda} 
-          onChange={funcionBusqueda} 
-        />
+      <h2>Selecciona una provincia de {countryParam}</h2>
+      <div className='city-select'>
+        <select value={provinciaSeleccionada} onChange={cambioProvincia}>
+          <option value="">Selecciona una provincia</option>
+            {provincias.sort((a, b) => a.name.localeCompare(b.name)).map((provincia, index) => (
+          <option key={index} value={provincia.code}>{provincia.name}</option>
+            ))}
+        </select>
       </div>
-      {loading ? (
-        <div className='loading-spinner'>
-          Cargando...   <FaSpinner className='spinner' style={{fontSize: "25px", color:"rgb(0, 187, 255)"}}/>
-        </div>
-      ) : (
-        ciudadesFiltradas.length > 0 && (
-          <div className='city-select'> 
-            <select value={ciudadSeleccionada} onChange={cambioCiudad}>
-              <option value="">Selecciona una ciudad</option>
-              {ciudadesFiltradas.sort().map((city, index) => (
-                <option key={index} value={city.name}>{city.name}</option>
-              ))}
-            </select>
+      {provinciaSeleccionada && (
+        <>
+          <h2>Selecciona una ciudad</h2>
+          <div className='city-input'>
+            <input 
+              type="text" 
+              placeholder="Buscar ciudad" 
+              value={busqueda} 
+              onChange={funcionBusqueda} 
+            />
           </div>
-        )
+          {loading ? (
+            <div className='loading-spinner'>
+              Cargando...   <FaSpinner className='spinner' style={{fontSize: "25px", color:"rgb(0, 187, 255)"}}/>
+            </div>
+          ) : (
+            ciudadesFiltradas.length > 0 && (
+              <div className='city-select'> 
+                <select value={ciudadSeleccionada} onChange={cambioCiudad}>
+                  <option value="">Selecciona una ciudad</option>
+                      {ciudadesFiltradas.sort((a, b) => a.name.localeCompare(b.name)).map((city, index) => (
+                  <option key={index} value={city.name}>{city.name}</option>
+                  ))}
+                </select>
+              </div>
+            )
+          )}
+          <div className='city-button'>
+            <button onClick={verClima}>Ver clima</button>
+          </div>
+        </>
       )}
-      <div className='city-button'>
-        <button onClick={verClima}>Ver clima</button>
-      </div>
     </div>
+    </>
   );
-};
+}  
 
 export default Ciudades;
+
 
 
 
